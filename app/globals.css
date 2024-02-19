@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @apply bg-gray-50;
+}
+
+input {
+  @apply px-2;
+}
+  .fc-header-toolbar {
+    display: inline-block;
+    padding: 4px 4px;
+    font-family: 'Arial', sans-serif; /* Set the font family */
+    font-size: 1rem; /* Set the font size */
+    color: #333;
+    @apply space-x-8; 
+}
+
+.fc-day {
+  @apply m-8;
+}
+
+.fc-scrollgrid-sync-table {
+  @apply w-full;
+}
+
+.fc-view {
+  @apply w-full h-full lg:h-3/4 xl:h-2/3 bg-white;
+}
+
+.fc-h-event {
+  @apply bg-green-500 border border-green-600 ;
+  
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  @apply bg-violet-100 ;
+}
+
+/* .fc .fc-button{
+  @apply bg-violet-800 hover:bg-violet-900  ;
+} */
+.fc .fc-button {
+  @apply bg-white text-blue-600 hover:bg-gray-800 border-black shadow-md;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  @apply bg-violet-600;
+}
+
+.fc .fc-button-primary:disabled {
+  @apply bg-violet-600;
+}
+.fc-v-event {
+  @apply bg-violet-500 border border-violet-600 ;
+  
+}
+@media (min-width: 768px) {
+  .p-50 {
+    padding: 50px;
+  }
+  .flex-col {
+    flex-basis: calc(70% - 1rem); /* Calendar takes 70% of the width minus margin */
+    max-width: calc(70% - 1rem);
+  }
+
+  #draggable-el {
+    flex-basis: calc(20% - 1rem); /* Draggable events container takes 30% of the width minus margin */
+    max-width: calc(20% - 1rem);
+  }
+}
+.fc-event.bg-green-500 {
+  background-color: #28a745; 
+}
+.fc-event.text-white {
+  color: #fff;
+}
+.fc-timezone-selector {
+  font-family: 'Arial', sans-serif; /* Match the font to the rest of your calendar */
+  font-size: 0.875rem; /* Adjust the font size as necessary */
+  color: #333; /* Match the text color to your design */
+  /* Add other styles as necessary */
+}
