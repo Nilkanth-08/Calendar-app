@@ -12,7 +12,7 @@ input {
     display: inline-block;
     padding: 4px 4px;
     font-family: 'Arial', sans-serif; 
-    font-size: 1rem; /
+    font-size: 1rem; 
     color: #333;
     @apply space-x-8; 
 }
