@@ -1,13 +1,12 @@
 "use client"
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin, {Draggable, DropArg} from '@fullcalendar/interaction'
-import timeGridPlugin from '@fullcalendar/timegrid'
+import interactionPlugin, {Draggable, DropArg} from '@fullcalendar/interaction';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon, ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import moment from 'moment-timezone';
-
 
 export default function Home() {
   const [timezone, setTimezone] = useState('UTC');
@@ -41,28 +40,29 @@ export default function Home() {
     });
   }
 },[]);
-
-  function handleDateClick(arg){
+  function handleDateClick(arg)
+  {
     setNewEvent({ ...newEvent, start: arg.date, allDay: arg.allDay, id: new Date().getTime()});
     setShowModal(true);
   }
-
-  function addEvent(data){
+  function addEvent(data)
+  {
     const event =  {...newEvent, start: data.date.toISOString(), title: data.draggedEl.innerText, allDay: data.allDay, id: new Date().getTime()};
     setAllEvents([...allEvents, event]);
   }
-
-  function handleDeleteModal(data){
+  function handleDeleteModal(data)
+  {
     setShowDeleteModal(true)
     setIdToDelete(Number(data.event.id))
   }
-  function handleDelete() {
+  function handleDelete() 
+  {
     setAllEvents(allEvents.filter(event => Number(event.id) !== Number(idToDelete)))
     setShowDeleteModal(false)
     setIdToDelete(null)
   }
-
-  function handleCloseModal() {
+  function handleCloseModal() 
+  {
     setShowModal(false)
     setNewEvent({
       title: '',
@@ -79,7 +79,6 @@ export default function Home() {
       title: e.target.value
     });
   }
-
   function handleSubmit(e) {
     e.preventDefault()
     setAllEvents([...allEvents, newEvent])
@@ -91,7 +90,6 @@ export default function Home() {
       id: 0
     });
   }
-
   return (
     <>
     <nav className="flex justify-between mb-12 border-b border-gray-300 border-shadow p-3">
@@ -100,8 +98,7 @@ export default function Home() {
     <select
         value={timezone}
         onChange={(e) => setTimezone(e.target.value)}
-        className="my-2 p-1 border-2 "
-      >
+        className="my-2 p-1 border-2 ">
         {moment.tz.names().map((tzName) => (
           <option key={tzName} value={tzName}>
             {tzName}
@@ -143,8 +140,7 @@ export default function Home() {
                 className="fc-event border-2 p-1 m-2 w-full rounded-md ml-auto text-center bg-white"
                 title={event.title}
                 data-id={event.id}
-                key={event.id}
-                >
+                key={event.id}>
                   {event.title}
                  </div>
             ))}
@@ -163,7 +159,6 @@ export default function Home() {
                 >
                   <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                 </Transition.Child>
-
                 <div className="fixed inset-0 z-10 overflow-y-auto">
                   <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                   <Transition.Child
@@ -173,8 +168,7 @@ export default function Home() {
                 enterTo="opacity-100 translate-y-0 sm: scale-100"
                 leave="ease-in duration-200"
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                   <Dialog.Panel classname="relative transform overflow-hidden rounded-lg
                   bg-white text-left shadow-x1 transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
@@ -206,13 +200,13 @@ export default function Home() {
                         Cancel
                       </button>
                     </div>
-
                   </Dialog.Panel>
                 </Transition.Child>
                   </div>
                 </div>
               </Dialog>
             </Transition.Root>
+                          
             <Transition.Root show={showModal} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={setShowModal}>
             <Transition.Child
@@ -222,11 +216,9 @@ export default function Home() {
               enterTo="opacity-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
+              leaveTo="opacity-0">
               <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
             </Transition.Child>
-
             <div className="fixed inset-0 z-10 overflow-y-auto">
               <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                 <Transition.Child
@@ -236,8 +228,7 @@ export default function Home() {
                   enterTo="opacity-100 translate-y-0 sm:scale-100"
                   leave="ease-in duration-200"
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
+                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                   <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4
                    pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                     <div>
@@ -265,8 +256,7 @@ export default function Home() {
                               py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 
                               focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
                               focus-visible:outline-violet-600 sm:col-start-2 disabled:opacity-25"
-                              disabled={newEvent.title === ''}
-                            >
+                              disabled={newEvent.title === ''}>
                               Create
                             </button>
                             <button
@@ -274,9 +264,7 @@ export default function Home() {
                               className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 
                               py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset 
                               ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
-                              onClick={handleCloseModal}
-
-                            >
+                              onClick={handleCloseModal}>
                               Cancel
                             </button>
                           </div>
@@ -289,6 +277,7 @@ export default function Home() {
             </div>
           </Dialog>
         </Transition.Root>
+                                
     </main>
     </>
   );
